@@ -3,6 +3,7 @@
   --slate: #222222;
   --darkjetblue: #0a2136;
   --crimson: #6d0000;
+  --page-gap: 2rem;
 }
 
 .fullWidth {
@@ -10,7 +11,7 @@
 }
 
 .button {
-  position: inline;
+  display: inline-block;
   border: 1px solid #000;
   border-radius: 0.1875rem;
   font-size: 0.9375rem;
@@ -22,7 +23,7 @@
   transition: background-color 0.2s ease 0s, color 0.2s ease 0s,
     border-color 0.2s ease 0s, opacity 0.2s ease 0s;
   color: var(--jetskyblue);
-  margin: 0rem;
+  margin: 0.25rem;
 }
 
 .button:hover,
@@ -34,7 +35,23 @@
 }
 
 .articleImage {
-  width: 40vw;
+  width: 100%;
+  display: block;
+  margin-bottom: var(--page-gap);
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+figure {
+  width: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 li,
@@ -47,9 +64,11 @@ dd {
   color: var(--slate);
 }
 
-.center {
-  margin: auto;
-  width: 50%;
+.centerflex {
+  /* margin: auto;
+  width: 50%; 
+  The above is not needed not that we use flexbox*/
+  align-self: center;
 }
 
 h1,
@@ -90,27 +109,34 @@ a:hover {
   text-align: center;
 }
 
+.center-column {
+  displey: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 main {
-  margin: 0 auto;
   padding: 0 1rem;
-  max-width: 50rem;
+  max-width: 70rem;
 }
 
 .hero {
   position: relative;
-  left: 0%;
-  margin-left: px;
-  margin-right: 0;
-  width: 100%;
+  margin-bottom: var(--page-gap);
 }
 
 .hero .heroText {
   position: absolute;
-  left: 0rem;
-  bottom: 0rem;
-  top: 40rem;
-  right: 0rem;
-  color: red;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 1rem;
+
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
 }
 
@@ -118,17 +144,17 @@ main {
 .hero p {
   font-family: "Tinos", serif;
   color: white;
-  margin-left: 5rem;
 }
 
 .hero h1 {
   font-size: 3rem;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.52);
+  line-height: 1;
+  margin-bottom: -0.1rem;
 }
 
 .hero p {
   font-size: 1.5rem;
-  margin-top: 0;
 }
 
 a {
@@ -137,8 +163,13 @@ a {
 
 .cards {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 2rem;
+  margin-bottom: var(--page-gap);
+}
+
+.aside {
+  margin-bottom: var(--page-gap);
 }
 
 .text {
@@ -148,15 +179,16 @@ a {
 .text div {
   position: absolute;
   top: 0;
-  left: 0px;
-  right: 0;
+  left: 0rem;
+  right: 0rem;
   bottom: 0;
-  width: 350px;
-  height: 350px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 0 1rem;
+  text-align: center;
 
   color: #fff;
   letter-spacing: 4px;
@@ -214,16 +246,84 @@ div .flexbox {
 nav ul {
   list-style-type: none;
   display: flex;
-  /* ???????   */
-  /* justify-content: space-around; */
+
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   gap: 0rem;
-  align-content: stretch;
   justify-content: flex-end;
+  align-self: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
 }
 
 #Layer_1 {
   height: 150px;
   width: 150px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.center a {
+  text-align: center;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: var(--page-gap);
+}
+
+.panel > figure {
+  order: -1;
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+@media (min-width: 600px) {
+  .panel {
+    flex-direction: row;
+    display: flex;
+  }
+
+  .panel .text-content {
+    flex: 0 1 60%;
+  }
+
+  .panel figure {
+    flex: 1 1 40%;
+    order: 0;
+  }
+
+  .panel .left {
+    order: -1;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    flex: 1 1 40%;
+  }
+}
+
+@media (min-width: 900px) {
+  .cards {
+    flex-wrap: nowrap;
+    flex: 1 1 20%;
+  }
 }
